@@ -18,4 +18,9 @@ public class MemberServiceImpl implements MemberService {
 		memberDao.Join(dto);
 	}
 
+	@Override
+	public String LoginCheck(MemberDTO dto) {
+		return memberDao.LoginCheck(dto);
+	}
+
 }

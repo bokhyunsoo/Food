@@ -21,4 +21,9 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.insert("member.join", dto);
 	}
 
+	@Override
+	public String LoginCheck(MemberDTO dto) {
+		return sqlSession.selectOne("member.login", dto);
+	}
+
 }
