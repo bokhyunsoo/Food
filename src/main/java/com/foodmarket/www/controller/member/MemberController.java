@@ -55,4 +55,12 @@ public class MemberController {
 		
 		return mav;
 	}
+	
+	@RequestMapping("logout.do")
+	public String logout(HttpSession session) {
+		session.removeAttribute("userid");
+		session.removeAttribute("name");
+		return "redirect:/";
+	}
+	
 }
