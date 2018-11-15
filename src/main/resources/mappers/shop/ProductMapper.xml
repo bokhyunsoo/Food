@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="product">
+	
+	<select id="listSkewer" resultType="com.foodmarket.www.model.shop.dto.ProductDTO">
+		select * from product where product_name like '%꼬치%' order by product_id desc
+	</select>
+	
+	<select id="listDog" resultType="com.foodmarket.www.model.shop.dto.ProductDTO">
+		select * from product where product_name like '%핫도그%' order by product_id desc
+	</select>
+	
+	<select id="listSausage" resultType="com.foodmarket.www.model.shop.dto.ProductDTO">
+		select * from product where product_name like '%소시지%' order by product_id desc
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
