@@ -47,7 +47,7 @@ public class MemberController {
 		if(name != null) {
 			session.setAttribute("userid", dto.getUserId());
 			session.setAttribute("name", name);
-			mav.setViewName("redirect:/");
+			mav.setViewName("home");
 		} else {
 			mav.addObject("message", "error");
 			mav.setViewName("member/login");
@@ -60,7 +60,7 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		session.removeAttribute("userid");
 		session.removeAttribute("name");
-		return "redirect:/";
+		return "home";
 	}
 	
 }
