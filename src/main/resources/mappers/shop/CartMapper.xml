@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="cart">
+	
+	<insert id="insertCart">
+		insert into cart values (cart_seq.nextval, #{userId}, #{product_id}, #{amount})
+	</insert>
+	
+	<select id="listCart" resultType="com.foodmarket.www.model.shop.dto.CartDTO">
+		select cart_id, m.userId, name, p.product_id, product_name, amount, price, price*amount money
+		from member m, product p, cart c
+		where m.userId = c.userId and c.product_id = p.product_id and m.userId = #{userId}
+	</select>
+	
+	<select id="sumMoney" resultType="int">
+		select nvl(sum(price*amount),0) money from product p join cart c
+		on p.product_id = c.product_id and userId=#{userId}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -41,7 +41,7 @@
                 <li><a href="${path}/shop/product/doglist.do" role="button">핫도그류</a></li>
 				<li><a href="${path}/shop/product/skewerlist.do" role="button">꼬치류</a></li>
 				<li><a href="${path}/shop/product/sausagelist.do" role="button">소시지류</a></li>
-                <li><a href="${path}/shop/cart/list.do" role="button">장바구니</a></li>
+                <li><a href="${path}/shop/cart/listCart.do" role="button">장바구니</a></li>
                 <li><a href="${path}/board/list.do" role="button">게시판</a></li>
                 <li><a href="${path}/member/logout.do" role="button">로그아웃</a></li>
                 </c:otherwise>
