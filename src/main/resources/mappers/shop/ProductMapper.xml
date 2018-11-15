@@ -7,17 +7,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="product">
 	
 	<select id="listSkewer" resultType="com.foodmarket.www.model.shop.dto.ProductDTO">
+		<include refid="paging_header"/>
 		select * from product where product_name like '%꼬치%' order by product_id desc
+		<include refid="paging_footer"/>
 	</select>
 	
 	<select id="listDog" resultType="com.foodmarket.www.model.shop.dto.ProductDTO">
+		<include refid="paging_header"/>
 		select * from product where product_name like '%핫도그%' order by product_id desc
+		<include refid="paging_footer"/>
 	</select>
 	
 	<select id="listSausage" resultType="com.foodmarket.www.model.shop.dto.ProductDTO">
+		<include refid="paging_header"/>
 		select * from product where product_name like '%소시지%' order by product_id desc
+		<include refid="paging_footer"/>
 	</select>
 	
+	<select id="countSkewer" resultType="int">
+		select count(*) from product where product_name like '%꼬치%'
+	</select>
+	
+	<select id="countDog" resultType="int">
+		select count(*) from product where product_name like '%핫도그%'
+	</select>
+	
+	<select id="countSausage" resultType="int">
+		select count(*) from product where product_name like '%소시지%'
+	</select>
+	
+	<sql id="paging_header">
+		select * 
+		from (
+			select rownum as rn, A.*
+			from (
+	</sql>
+	
+	<sql id="paging_footer">
+		) A
+	) where rn between #{start} and #{end}
+	</sql>
 </mapper>
 
 

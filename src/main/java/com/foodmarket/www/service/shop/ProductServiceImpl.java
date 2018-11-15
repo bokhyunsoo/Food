@@ -16,18 +16,33 @@ public class ProductServiceImpl implements ProductService {
 	ProductDAO productDao;
 	
 	@Override
-	public List<ProductDTO> listSkewer() {
-		return productDao.listSkewer();
+	public List<ProductDTO> listSkewer(int start, int end) {
+		return productDao.listSkewer(start, end);
 	}
 
 	@Override
-	public List<ProductDTO> listDog() {
-		return productDao.listDog();
+	public List<ProductDTO> listDog(int start, int end) {
+		return productDao.listDog(start, end);
 	}
 
 	@Override
-	public List<ProductDTO> listSausage() {
-		return productDao.listSausage();
+	public List<ProductDTO> listSausage(int start, int end) {
+		return productDao.listSausage(start, end);
+	}
+
+	@Override
+	public int countSkewer() {
+		return productDao.countSkewer();
+	}
+
+	@Override
+	public int countDog() {
+		return productDao.countDog();
+	}
+
+	@Override
+	public int countSausage() {
+		return productDao.countSausage();
 	}
 
 }

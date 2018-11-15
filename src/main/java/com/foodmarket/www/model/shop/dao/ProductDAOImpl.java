@@ -18,21 +18,42 @@ public class ProductDAOImpl implements ProductDAO {
 	SqlSession sqlSession;
 	
 	@Override
-	public List<ProductDTO> listSkewer() {
+	public List<ProductDTO> listSkewer(int start, int end) {
 		Map<String,Object> map = new HashMap<>();
+		map.put("start", start);
+		map.put("end", end);
 		return sqlSession.selectList("product.listSkewer", map);
 	}
 
 	@Override
-	public List<ProductDTO> listDog() {
+	public List<ProductDTO> listDog(int start, int end) {
 		Map<String,Object> map = new HashMap<>();
+		map.put("start", start);
+		map.put("end", end);
 		return sqlSession.selectList("product.listDog", map);
 	}
 
 	@Override
-	public List<ProductDTO> listSausage() {
+	public List<ProductDTO> listSausage(int start, int end) {
 		Map<String,Object> map = new HashMap<>();
+		map.put("start", start);
+		map.put("end", end);
 		return sqlSession.selectList("product.listSausage", map);
+	}
+
+	@Override
+	public int countSkewer() {
+		return sqlSession.selectOne("product.countSkewer");
+	}
+
+	@Override
+	public int countDog() {
+		return sqlSession.selectOne("product.countDog");
+	}
+
+	@Override
+	public int countSausage() {
+		return sqlSession.selectOne("product.countSausage");
 	}
 
 }
