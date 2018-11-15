@@ -30,4 +30,14 @@ public class CartServiceImpl implements CartService {
 		return cartDao.sumMoney(userid);
 	}
 
+	@Override
+	public void deleteCart(int cart_id) {
+		cartDao.deleteCart(cart_id);
+	}
+
+	@Override
+	public void deleteAllCart(String userid) {
+		cartDao.deleteAllCart(userid);
+	}
+
 }

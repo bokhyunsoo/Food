@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.foodmarket.www.model.shop.dto.CartDTO;
@@ -56,4 +57,18 @@ public class CartController {
 			return mav;
 		}
 	}
+	
+	@RequestMapping("delete.do")
+	public String deleteCart(@RequestParam int cart_id) {
+		cartService.deleteCart(cart_id);
+		return "redirect:/shop/cart/listCart.do";
+	}
+	
+	@RequestMapping("deleteAll.do")
+	public String deleteAllCart(HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
+		cartService.deleteAllCart(userid);
+		return "redirect:/shop/cart/listCart.do";
+	}
+	
 }

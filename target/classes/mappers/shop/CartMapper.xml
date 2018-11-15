@@ -20,6 +20,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select nvl(sum(price*amount),0) money from product p join cart c
 		on p.product_id = c.product_id and userId=#{userId}
 	</select>
+	
+	<delete id="deleteCart">
+		delete from cart where cart_id = #{cart_id}
+	</delete>
+	
+	<delete id="deleteAllCart">
+		delete from cart where userId = #{userId}
+	</delete>
 </mapper>
 
 

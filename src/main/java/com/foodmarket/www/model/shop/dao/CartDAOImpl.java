@@ -30,4 +30,14 @@ public class CartDAOImpl implements CartDAO {
 		return sqlSession.selectOne("cart.sumMoney", userid);
 	}
 
+	@Override
+	public void deleteCart(int cart_id) {
+		sqlSession.update("cart.deleteCart", cart_id);
+	}
+
+	@Override
+	public void deleteAllCart(String userid) {
+		sqlSession.delete("cart.deleteAllCart", userid);
+	}
+
 }
