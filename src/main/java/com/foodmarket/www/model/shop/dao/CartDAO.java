@@ -10,4 +10,5 @@ public interface CartDAO {
 	public int sumMoney(String userid);
 	public void deleteCart(int cart_id);
 	public void deleteAllCart(String userid);
+	public void updateCart(CartDTO dto);
 }

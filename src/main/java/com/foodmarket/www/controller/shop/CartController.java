@@ -71,4 +71,23 @@ public class CartController {
 		return "redirect:/shop/cart/listCart.do";
 	}
 	
+	@RequestMapping("update.do")
+	public String updateCart(@RequestParam int[] amount, @RequestParam int[] cart_id, HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
+		
+		if (userid != null) {
+			for(int i=0; i<cart_id.length; i++) {
+				if(amount[i] == 0) {
+					cartService.deleteCart(cart_id[i]);
+				} else {
+					CartDTO dto = new CartDTO();
+					dto.setUserId(userid);
+					dto.setCart_id(cart_id[i]);
+					dto.setAmount(amount[i]);
+					cartService.updateCart(dto);
+				}
+			}
+		}
+		return "redirect:/shop/cart/listCart.do";
+	}
 }

@@ -28,6 +28,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteAllCart">
 		delete from cart where userId = #{userId}
 	</delete>
+	
+	<update id="updateCart">
+		update cart set amount = #{amount} where cart_id = #{cart_id}
+	</update>
 </mapper>
 
 

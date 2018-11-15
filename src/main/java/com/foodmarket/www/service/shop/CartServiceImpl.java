@@ -40,4 +40,9 @@ public class CartServiceImpl implements CartService {
 		cartDao.deleteAllCart(userid);
 	}
 
+	@Override
+	public void updateCart(CartDTO dto) {
+		cartDao.updateCart(dto);
+	}
+
 }
