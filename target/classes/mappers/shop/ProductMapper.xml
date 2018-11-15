@@ -47,6 +47,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		) A
 	) where rn between #{start} and #{end}
 	</sql>
+	
+	<select id="productDetail" resultType="com.foodmarket.www.model.shop.dto.ProductDTO">
+		select * from product where product_id = #{product_id}
+	</select>
 </mapper>
 
 

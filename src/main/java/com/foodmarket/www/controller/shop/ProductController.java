@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -62,6 +63,14 @@ public class ProductController {
 		mav.addObject("map", map);
 		mav.addObject("sausage", productService.listSausage(start, end));
 		mav.setViewName("shop/listSausage");
+		return mav;
+	}
+	
+	@RequestMapping("detail/{product_id}")
+	public ModelAndView productDetail(@PathVariable int product_id) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("detail", productService.productDetail(product_id));
+		mav.setViewName("shop/product_detail");
 		return mav;
 	}
 	

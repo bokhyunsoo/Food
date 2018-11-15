@@ -56,4 +56,9 @@ public class ProductDAOImpl implements ProductDAO {
 		return sqlSession.selectOne("product.countSausage");
 	}
 
+	@Override
+	public ProductDTO productDetail(int product_id) {
+		return sqlSession.selectOne("product.productDetail", product_id);
+	}
+
 }

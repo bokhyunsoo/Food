@@ -45,4 +45,9 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.countSausage();
 	}
 
+	@Override
+	public ProductDTO productDetail(int product_id) {
+		return productDao.productDetail(product_id);
+	}
+
 }
