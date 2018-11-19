@@ -6,7 +6,7 @@
 <nav class="navbar navbar-fixed-top header">
     <div class="col-md-12">
         <div class="navbar-header">
-        	<a href="${path}" class="navbar-brand">Fabulous</a>
+        	<a href="${path}" class="navbar-brand">FoodMarket</a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse1">
             <form class="navbar-form pull-left">

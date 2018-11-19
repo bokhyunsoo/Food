@@ -13,4 +13,5 @@ public interface ProductService {
 	public int countSausage();
 	public ProductDTO productDetail(int product_id);
 	public void insertProduct(ProductDTO dto);
+	public void updateProduct(ProductDTO dto);
 }

@@ -7,7 +7,14 @@
 <%@ include file="include/header.jsp" %>
 </head>
 <body>
+<c:choose>
+<c:when test="${sessionScope.admin_userid != null}">
+<%@ include file="include/admin_menu.jsp" %>
+</c:when>
+<c:otherwise>
 <%@ include file="include/menu.jsp" %>
+</c:otherwise>
+</c:choose>
 <br><br><br><br><br><br><br>
 <c:if test="${sessionScope.name != null}">
 ${sessionScope.name}(${sessionScope.userid})님 환영합니다.

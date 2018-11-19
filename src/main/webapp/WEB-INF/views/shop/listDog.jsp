@@ -13,7 +13,6 @@ function list(page){
 </script>
 </head>
 <body>
-<%@ include file="../include/menu.jsp" %>
 <c:choose>
 <c:when test="${sessionScope.admin_userid != null}">
 <%@ include file="../include/admin_menu.jsp" %>
@@ -54,6 +53,7 @@ function list(page){
 					<button type="button" id="btnAdd" class="btn btn-success">편집</button>
 					</a>
 					</c:if>
+					</td>
                     <td><fmt:formatNumber value="${dog.price}" pattern="#,###"/></td>
                 </tr>
                </c:forEach>

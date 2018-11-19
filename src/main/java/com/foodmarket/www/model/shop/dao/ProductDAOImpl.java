@@ -66,4 +66,9 @@ public class ProductDAOImpl implements ProductDAO {
 		sqlSession.insert("product.insertProduct", dto);
 	}
 
+	@Override
+	public void updateProduct(ProductDTO dto) {
+		sqlSession.update("product.updateProduct", dto);
+	}
+
 }

@@ -55,6 +55,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertProduct">
 		insert into product values (seq_product.nextval,#{product_name},#{price},#{description},#{picture_url})
 	</insert>
+	
+	<update id="updateProduct">
+		update product set product_name = #{product_name}, price = #{price},
+		description = #{description}, picture_url = #{picture_url}
+		where product_id = #{product_id}
+	</update>
 </mapper>
 
 

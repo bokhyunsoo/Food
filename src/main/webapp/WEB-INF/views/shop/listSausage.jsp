@@ -48,6 +48,12 @@ function list(page){
                     <th scope="row">${sausage.product_id}</th>
                     <td><img src="${path}/images/${sausage.picture_url}" width="150px" height="150px"></td>
                     <td><a href="${path}/shop/product/detail/${sausage.product_id}">${sausage.product_name}</a>
+                    <c:if test="${sessionScope.admin_userid != null }">
+					<a href="${path}/shop/product/sausageedit/${sausage.product_id}">
+					<button type="button" id="btnAdd" class="btn btn-success">편집</button>
+					</a>
+					</c:if>
+					</td>
                     <td><fmt:formatNumber value="${sausage.price}" pattern="#,###"/></td>
                 </tr>
                </c:forEach>

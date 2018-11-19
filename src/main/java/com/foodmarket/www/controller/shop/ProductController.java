@@ -129,6 +129,109 @@ public class ProductController {
 		}
 	}
 	
+	@RequestMapping("dogedit/{product_id}")
+	public ModelAndView dogedit(@PathVariable int product_id) {
+		ModelAndView mav = new ModelAndView();
+		ProductDTO dto = productService.productDetail(product_id);
+		mav.addObject("dog", dto);
+		mav.setViewName("shop/dog_edit");
+		return mav;
+	}
 	
+	@RequestMapping("skeweredit/{product_id}")
+	public ModelAndView skeweredit(@PathVariable int product_id) {
+		ModelAndView mav = new ModelAndView();
+		ProductDTO dto = productService.productDetail(product_id);
+		mav.addObject("skewer", dto);
+		mav.setViewName("shop/skewer_edit");
+		return mav;
+	}
+	
+	@RequestMapping("sausageedit/{product_id}")
+	public ModelAndView sausageedit(@PathVariable int product_id) {
+		ModelAndView mav = new ModelAndView();
+		ProductDTO dto = productService.productDetail(product_id);
+		mav.addObject("sausage", dto);
+		mav.setViewName("shop/sausage_edit");
+		return mav;
+	}
+	
+	@RequestMapping(value= {"dogupdate.do", "skewerupdate.do", "sausageupdate.do"})
+	public String update(@ModelAttribute ProductDTO dto, @RequestParam int v) {
+		String description_filename = "-";
+		String picture_filename = "-";
+		if (!dto.getDescription_file().isEmpty() && !dto.getPicture_file().isEmpty()) {
+			description_filename = dto.getDescription_file().getOriginalFilename();
+			picture_filename = dto.getPicture_file().getOriginalFilename();
+			
+			try {
+				String path = "D:\\Spring\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\FoodMarket\\WEB-INF\\views\\images\\";
+				new File(path).mkdir();
+				// 업로드된 임시파일을 원하는 디렉토리로 복사
+				dto.getDescription_file().transferTo(new File(path + description_filename));
+				dto.getPicture_file().transferTo(new File(path + picture_filename));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			ProductDTO dto2 = productService.productDetail(dto.getProduct_id());
+			dto.setPicture_url(picture_filename);
+			dto.setDescription(description_filename);
+		}else if(!dto.getDescription_file().isEmpty() && dto.getPicture_file().isEmpty()) {
+			description_filename = dto.getDescription_file().getOriginalFilename();
+			picture_filename = dto.getPicture_file().getOriginalFilename();
+			try {
+				// 개발 디렉토리
+				// String path =
+				// "D:\\Spring\\spring02\\src\\main\\webapp\\WEB-INF\\views\\images\\";
+				// 배포 디렉토리
+				String path = "D:\\Spring\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Fabulous\\WEB-INF\\views\\images\\";
+ 				new File(path).mkdir();
+				// 업로드된 임시파일을 원하는 디렉토리로 복사
+ 				dto.getDescription_file().transferTo(new File(path + description_filename));
+				dto.getPicture_file().transferTo(new File(path + picture_filename));
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+			ProductDTO dto2 = productService.productDetail(dto.getProduct_id());
+			dto.setDescription(description_filename);
+			dto.setPicture_url(dto2.getPicture_url());
+			
+		} else if(dto.getDescription_file().isEmpty() && !dto.getPicture_file().isEmpty()) {
+			description_filename = dto.getDescription_file().getOriginalFilename();
+			picture_filename = dto.getPicture_file().getOriginalFilename();
+			try {
+				// 개발 디렉토리
+				// String path =
+				// "D:\\Spring\\spring02\\src\\main\\webapp\\WEB-INF\\views\\images\\";
+				// 배포 디렉토리
+				String path = "D:\\Spring\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Fabulous\\WEB-INF\\views\\images\\";
+ 				new File(path).mkdir();
+				// 업로드된 임시파일을 원하는 디렉토리로 복사
+ 				dto.getDescription_file().transferTo(new File(path + description_filename));
+				dto.getPicture_file().transferTo(new File(path + picture_filename));
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+			ProductDTO dto2 = productService.productDetail(dto.getProduct_id());
+			dto.setPicture_url(picture_filename);
+			dto.setDescription(dto2.getDescription());
+			
+		} else {
+			// 새로운 파일 첨부가 없을 때
+			// 기존의 첨부파일 정보가 지워지지 않도록 처리
+			ProductDTO dto2 = productService.productDetail(dto.getProduct_id());
+			dto.setDescription(dto2.getDescription());
+			dto.setPicture_url(dto2.getPicture_url());
+		}
+		productService.updateProduct(dto);
+		// 상품 목록 페이지로 이동
+		if(v == 1) {
+			return "redirect:/shop/product/doglist.do";	
+		} else if(v == 0) {
+			return "redirect:/shop/product/skewerlist.do";
+		} else {
+			return "redirect:/shop/product/sausagelist.do";
+		}
+	}
 	
 }

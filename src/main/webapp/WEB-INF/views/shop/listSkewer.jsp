@@ -13,7 +13,6 @@ function list(page){
 </script>
 </head>
 <body>
-<%@ include file="../include/menu.jsp" %>
 <c:choose>
 <c:when test="${sessionScope.admin_userid != null}">
 <%@ include file="../include/admin_menu.jsp" %>
@@ -49,6 +48,12 @@ function list(page){
                     <th scope="row">${skewer.product_id}</th>
                     <td><img src="${path}/images/${skewer.picture_url}" width="150px" height="150px"></td>
                     <td><a href="${path}/shop/product/detail/${skewer.product_id}">${skewer.product_name}</a>
+                    <c:if test="${sessionScope.admin_userid != null }">
+					<a href="${path}/shop/product/skeweredit/${skewer.product_id}">
+					<button type="button" id="btnAdd" class="btn btn-success">편집</button>
+					</a>
+					</c:if>
+					</td>
                     <td><fmt:formatNumber value="${skewer.price}" pattern="#,###"/></td>
                 </tr>
                </c:forEach>
