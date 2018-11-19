@@ -32,7 +32,7 @@ function checkValue()
 <div class="container" id="main">
    <div class="col-md-6 col-md-offset-3">
       <div class="panel panel-default content-main">
-      <c:if test="${message == 'nologin'}">
+      <c:if test="${param.message == 'nologin'}">
       <div class="alert alert-danger" role="alert" style="color:red;">로그인하신 후 이용하세요.</div>
       </c:if>
       <c:if test="${message == 'error'}">

@@ -35,4 +35,26 @@
 	<!-- aop의 설정을 통해
 	proxy 객체를 자동으로 생성하도록 설정 -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	
+	<!-- 인터셉터 빈 선언 -->
+	<beans:bean id="loginInterceptor" class="com.foodmarket.www.interceptor.LoginInterceptor"/>
+	<beans:bean id="adminInterceptor" class="com.foodmarket.www.interceptor.AdminInterceptor"/>
+	
+	<!-- 인터셉터를 적용할 url 설정 -->
+	<interceptors>
+		<!-- 로그인 체크를 위한 인터셉터 mapping -->
+			<interceptor>
+				<mapping path="/shop/cart/insert.do"/>
+				<mapping path="/shop/cart/listCart.do"/>
+				<beans:ref bean="loginInterceptor"/>
+			</interceptor>
+		<!-- 관리자 세션 체크를 위한 인터셉터 mapping -->
+			<interceptor>
+				<mapping path="/shop/product/dogwrite.do"/>
+				<mapping path="/shop/product/skewerwrite.do"/>
+				<mapping path="/shop/product/sausagewrite.do"/>
+				<mapping path="/shop/product/delete.do"/>
+				<beans:ref bean="adminInterceptor"/>
+			</interceptor>
+	</interceptors>
 </beans:beans>
