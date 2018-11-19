@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="board">
+	<select id="listAll" resultType="com.foodmarket.www.model.board.dto.BoardDTO">
+		<include refid="paging_header"/>
+		select * from board
+		order by bno desc
+		<include refid="paging_footer"/>
+	</select>
+	
+	<sql id="paging_header">
+		select * 
+		from (
+			select rownum as rn, A.*
+			from (
+	</sql>
+	
+	<sql id="paging_footer">
+		) A
+	) where rn between #{start} and #{end}
+	</sql>
+	
+	<select id="count" resultType="Int">
+		select count(*) from board
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
