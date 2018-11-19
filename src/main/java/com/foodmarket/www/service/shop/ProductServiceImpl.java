@@ -50,4 +50,9 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.productDetail(product_id);
 	}
 
+	@Override
+	public void insertProduct(ProductDTO dto) {
+		productDao.insertProduct(dto);
+	}
+
 }

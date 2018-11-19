@@ -14,11 +14,29 @@ function list(page){
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
+<c:choose>
+<c:when test="${sessionScope.admin_userid != null}">
+<%@ include file="../include/admin_menu.jsp" %>
+</c:when>
+<c:otherwise>
+<%@ include file="../include/menu.jsp" %>
+</c:otherwise>
+</c:choose>
 <br><br>
 <div class="container" id="main">
    <div class="col-md-10 col-md-offset-1">
       <div class="panel panel-default">
       <h3>핫도그류 목록</h3>
+      	  <table align="right">
+      		<tr>
+      			<td>
+      			<c:if test="${sessionScope.admin_userid != null}">
+					<button type="button" id="btnAdd" class="btn btn-success"
+					onclick="location.href='${path}/shop/product/dogwrite.do'">상품등록</button>
+				</c:if>
+      			</td>
+      		</tr>
+		  </table>
           <table class="table table-hover">
               <thead>
                 <tr>
@@ -31,6 +49,11 @@ function list(page){
                     <th scope="row">${dog.product_id}</th>
                     <td><img src="${path}/images/${dog.picture_url}" width="150px" height="150px"></td>
                     <td><a href="${path}/shop/product/detail/${dog.product_id}">${dog.product_name}</a>
+                    <c:if test="${sessionScope.admin_userid != null }">
+					<a href="${path}/shop/product/dogedit/${dog.product_id}">
+					<button type="button" id="btnAdd" class="btn btn-success">편집</button>
+					</a>
+					</c:if>
                     <td><fmt:formatNumber value="${dog.price}" pattern="#,###"/></td>
                 </tr>
                </c:forEach>

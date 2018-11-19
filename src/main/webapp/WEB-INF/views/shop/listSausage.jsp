@@ -6,14 +6,36 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
+<script>
+function list(page){
+	location.href="${path}/shop/product/skewerlist.do?curPage="+page;
+}
+</script>
 </head>
 <body>
+<c:choose>
+<c:when test="${sessionScope.admin_userid != null}">
+<%@ include file="../include/admin_menu.jsp" %>
+</c:when>
+<c:otherwise>
 <%@ include file="../include/menu.jsp" %>
+</c:otherwise>
+</c:choose>
 <br><br>
 <div class="container" id="main">
    <div class="col-md-10 col-md-offset-1">
       <div class="panel panel-default">
       <h3>소시지류 목록</h3>
+      	<table align="right">
+      		<tr>
+      			<td>
+      			<c:if test="${sessionScope.admin_userid != null}">
+					<button type="button" id="btnAdd" class="btn btn-success"
+					onclick="location.href='${path}/shop/product/sausagewrite.do'">상품등록</button>
+				</c:if>
+      			</td>
+      	  </tr>
+		  </table>
           <table class="table table-hover">
               <thead>
                 <tr>

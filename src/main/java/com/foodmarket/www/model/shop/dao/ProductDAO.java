@@ -12,4 +12,5 @@ public interface ProductDAO {
 	public int countDog();
 	public int countSausage();
 	public ProductDTO productDetail(int product_id);
+	public void insertProduct(ProductDTO dto);
 }

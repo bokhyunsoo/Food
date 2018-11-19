@@ -61,4 +61,9 @@ public class ProductDAOImpl implements ProductDAO {
 		return sqlSession.selectOne("product.productDetail", product_id);
 	}
 
+	@Override
+	public void insertProduct(ProductDTO dto) {
+		sqlSession.insert("product.insertProduct", dto);
+	}
+
 }
