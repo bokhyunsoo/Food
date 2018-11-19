@@ -61,6 +61,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		description = #{description}, picture_url = #{picture_url}
 		where product_id = #{product_id}
 	</update>
+	
+	<select id="fileInfo" resultType="String">
+		select picture_url from product where product_id = #{product_id}
+	</select>
+	
+	<select id="descriptionInfo" resultType="String">
+		select description from product where product_id = #{product_id}
+	</select>
+	
+	<delete id="deleteProduct">
+		delete from product where product_id = #{product_id}
+	</delete>
 </mapper>
 
 

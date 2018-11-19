@@ -184,7 +184,7 @@ public class ProductController {
 				// String path =
 				// "D:\\Spring\\spring02\\src\\main\\webapp\\WEB-INF\\views\\images\\";
 				// 배포 디렉토리
-				String path = "D:\\Spring\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Fabulous\\WEB-INF\\views\\images\\";
+				String path = "D:\\Spring\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\FoodMarket\\WEB-INF\\views\\images\\";
  				new File(path).mkdir();
 				// 업로드된 임시파일을 원하는 디렉토리로 복사
  				dto.getDescription_file().transferTo(new File(path + description_filename));
@@ -204,7 +204,7 @@ public class ProductController {
 				// String path =
 				// "D:\\Spring\\spring02\\src\\main\\webapp\\WEB-INF\\views\\images\\";
 				// 배포 디렉토리
-				String path = "D:\\Spring\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Fabulous\\WEB-INF\\views\\images\\";
+				String path = "D:\\Spring\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\FoodMarket\\WEB-INF\\views\\images\\";
  				new File(path).mkdir();
 				// 업로드된 임시파일을 원하는 디렉토리로 복사
  				dto.getDescription_file().transferTo(new File(path + description_filename));
@@ -225,6 +225,30 @@ public class ProductController {
 		}
 		productService.updateProduct(dto);
 		// 상품 목록 페이지로 이동
+		if(v == 1) {
+			return "redirect:/shop/product/doglist.do";	
+		} else if(v == 0) {
+			return "redirect:/shop/product/skewerlist.do";
+		} else {
+			return "redirect:/shop/product/sausagelist.do";
+		}
+	}
+	
+	@RequestMapping(value={"skewerdelete.do","dogdelete.do", "sausagedelete.do"})
+	public String deleteProduct(@RequestParam int product_id, @RequestParam int v) {
+		
+		String picture_filename = productService.fileInfo(product_id);
+		String description_filename = productService.descriptionInfo(product_id);
+		if(picture_filename != null || picture_filename.equals("-") || description_filename != null || description_filename.equals("-")) {
+			String path = "D:\\Spring\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\FoodMarket\\WEB-INF\\views\\images\\";
+			File f = new File(path+picture_filename);
+			File f2 = new File(path+description_filename);
+			if(f.exists() || f2.exists()) {
+				f.delete();
+				f2.delete();
+			}
+		}
+		productService.deleteProduct(product_id);
 		if(v == 1) {
 			return "redirect:/shop/product/doglist.do";	
 		} else if(v == 0) {

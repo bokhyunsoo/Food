@@ -71,4 +71,19 @@ public class ProductDAOImpl implements ProductDAO {
 		sqlSession.update("product.updateProduct", dto);
 	}
 
+	@Override
+	public String fileInfo(int product_id) {
+		return sqlSession.selectOne("product.fileInfo", product_id);
+	}
+
+	@Override
+	public String descriptionInfo(int product_id) {
+		return sqlSession.selectOne("product.descriptionInfo", product_id);
+	}
+
+	@Override
+	public void deleteProduct(int product_id) {
+		sqlSession.delete("product.deleteProduct", product_id);
+	}
+
 }

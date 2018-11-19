@@ -14,4 +14,7 @@ public interface ProductDAO {
 	public ProductDTO productDetail(int product_id);
 	public void insertProduct(ProductDTO dto);
 	public void updateProduct(ProductDTO dto);
+	public String fileInfo(int product_id);
+	public String descriptionInfo(int product_id);
+	public void deleteProduct(int product_id);
 }

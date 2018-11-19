@@ -60,4 +60,19 @@ public class ProductServiceImpl implements ProductService {
 		productDao.updateProduct(dto);
 	}
 
+	@Override
+	public String fileInfo(int product_id) {
+		return productDao.fileInfo(product_id);
+	}
+
+	@Override
+	public String descriptionInfo(int product_id) {
+		return productDao.descriptionInfo(product_id);
+	}
+
+	@Override
+	public void deleteProduct(int product_id) {
+		productDao.deleteProduct(product_id);
+	}
+
 }
