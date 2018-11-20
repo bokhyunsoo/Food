@@ -4,12 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.foodmarket.www.model.board.dto.BoardDTO;
 import com.foodmarket.www.model.shop.dto.Pager;
 import com.foodmarket.www.service.board.BoardService;
 
@@ -34,5 +36,18 @@ public class BoardController {
 		mav.addObject("map", map);
 		mav.setViewName("board/list");
 		return mav;
+	}
+	
+	@RequestMapping("write.do")
+	public String write() {
+		return "board/write";
+	}
+	
+	@RequestMapping("insert.do")
+	public String insertBoard(BoardDTO dto, HttpSession session) {
+		String userid = (String)session.getAttribute("userid");
+		dto.setWriter(userid);
+		boardService.insertBoard(dto);
+		return "redirect:/board/list.do";
 	}
 }

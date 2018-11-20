@@ -21,6 +21,7 @@
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources location="/WEB-INF/views/images/" mapping="/images/**" />
+	<resources location="/WEB-INF/views/ckeditor/" mapping="/ckeditor/**" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
@@ -44,6 +45,7 @@
 	<interceptors>
 		<!-- 로그인 체크를 위한 인터셉터 mapping -->
 			<interceptor>
+				<mapping path="/board/write.do"/>
 				<mapping path="/shop/cart/insert.do"/>
 				<mapping path="/shop/cart/listCart.do"/>
 				<beans:ref bean="loginInterceptor"/>

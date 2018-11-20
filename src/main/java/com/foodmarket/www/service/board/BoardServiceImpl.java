@@ -25,4 +25,9 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.boardCount();
 	}
 
+	@Override
+	public void insertBoard(BoardDTO dto) {
+		boardDao.insertBoard(dto);
+	}
+
 }

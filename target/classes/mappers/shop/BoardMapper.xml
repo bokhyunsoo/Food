@@ -27,6 +27,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="count" resultType="Int">
 		select count(*) from board
 	</select>
+	
+	<insert id="insertBoard">
+		insert into board (bno, title, content, writer) values (seq_board.nextval,#{title},#{content},#{writer})
+	</insert>
 </mapper>
 
 

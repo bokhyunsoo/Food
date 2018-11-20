@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
 <script>
+$(function(){
+	$("#btnWrite").click(function(){
+		location.href="${path}/board/write.do";
+	});
+});
 function list(page){
 	location.href="${path}/board/list.do?curPage="+page;
 }
