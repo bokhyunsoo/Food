@@ -8,4 +8,6 @@ public interface BoardDAO {
 	public List<BoardDTO> boardList(int start, int end);
 	public int boardCount();
 	public void insertBoard(BoardDTO dto);
+	public BoardDTO detailBoard(int bno);
+	public void increaseViewcnt(int bno); // 조회수 증가
 }

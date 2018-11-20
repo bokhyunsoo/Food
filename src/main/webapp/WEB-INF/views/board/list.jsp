@@ -15,6 +15,11 @@ $(function(){
 function list(page){
 	location.href="${path}/board/list.do?curPage="+page;
 }
+function view(bno){
+	document.form.bno.value = bno;
+	document.form.action="${path}/board/view.do";
+	document.form.submit();
+}
 </script>
 </head>
 <body>
@@ -76,6 +81,9 @@ function list(page){
     			</tr>
 				</tbody>
           </table>
+          <form name="form" method="post">
+		  <input type="hidden" name="bno">
+		  </form>
         </div>
     </div>
 </div>

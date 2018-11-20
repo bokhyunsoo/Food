@@ -50,4 +50,13 @@ public class BoardController {
 		boardService.insertBoard(dto);
 		return "redirect:/board/list.do";
 	}
+	
+	@RequestMapping("view.do")
+	public ModelAndView detailBoard(@RequestParam int bno, HttpSession session) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		boardService.increaseViewcnt(bno, session);
+		mav.addObject("dto", boardService.detailBoard(bno));
+		mav.setViewName("board/view");
+		return mav;
+	}
 }

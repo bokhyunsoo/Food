@@ -35,4 +35,14 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.insert("board.insertBoard", dto);
 	}
 
+	@Override
+	public BoardDTO detailBoard(int bno) {
+		return sqlSession.selectOne("board.detailBoard", bno);
+	}
+
+	@Override
+	public void increaseViewcnt(int bno) {
+		sqlSession.update("board.increaseViewcnt", bno);
+	}
+
 }
