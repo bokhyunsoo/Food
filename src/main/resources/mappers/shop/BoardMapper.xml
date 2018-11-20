@@ -6,10 +6,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="board">
 	<select id="listAll" resultType="com.foodmarket.www.model.board.dto.BoardDTO">
-		<include refid="paging_header"/>
-		select * from board
-		order by bno desc
-		<include refid="paging_footer"/>
+		<include refid="paging_header" />
+		select bno, title, b.regdate, viewcnt, writer,
+		(select count(*) from reply where bno=b.bno) cnt
+		from board b, member m <include refid="search"/>
+		order by bno desc, regdate desc
+		<include refid="paging_footer" />
 	</select>
 	
 	<sql id="paging_header">
@@ -22,6 +24,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<sql id="paging_footer">
 		) A
 	) where rn between #{start} and #{end}
+	</sql>
+	
+	<sql id="search">
+		<choose>
+			<when test="search_option == 'all'">
+				where b.writer = m.userId and (writer like '%' || #{keyword} || '%'
+				or content like '%' || #{keyword} || '%'
+				or title like '%' || #{keyword} || '%' )
+			</when>
+			<otherwise>
+				where b.writer = m.userId and ${search_option} like '%' || #{keyword} || '%'
+			</otherwise>
+		</choose>
 	</sql>
 	
 	<select id="count" resultType="Int">
@@ -47,6 +62,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteBoard">
 		delete from board where bno = #{bno}
 	</delete>
+	
+	<select id="countArticle" resultType="int">
+		select count(*) from board b, member m <include refid="search"/>
+	</select>
 </mapper>
 
 

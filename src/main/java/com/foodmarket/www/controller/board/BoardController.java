@@ -1,6 +1,7 @@
 package com.foodmarket.www.controller.board;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -23,16 +24,19 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping("list.do")
-	public ModelAndView listAll(@RequestParam(defaultValue="1") int curPage) {
+	public ModelAndView listAll(@RequestParam(defaultValue="1") int curPage, @RequestParam(defaultValue="all") String search_option, @RequestParam(defaultValue="") String keyword) {
 		ModelAndView mav = new ModelAndView();
 		Map<String,Object> map = new HashMap<>();
-		int boardCount = boardService.boardCount();
+		int boardCount = boardService.boardCount(search_option, keyword);
 		Pager pager = new Pager(boardCount, curPage);
 		int start = pager.getPageBegin();
 		int end = pager.getPageEnd();
+		List<BoardDTO> list = boardService.boardList(start, end, search_option, keyword);
+		map.put("search_option", search_option);
+		map.put("keyword", keyword);
 		map.put("pager", pager);
-		map.put("count", boardCount);
-		map.put("list", boardService.boardList(start, end));
+		map.put("count", list.size());
+		map.put("list", list);
 		mav.addObject("map", map);
 		mav.setViewName("board/list");
 		return mav;

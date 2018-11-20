@@ -17,13 +17,13 @@ public class BoardServiceImpl implements BoardService {
 	BoardDAO boardDao;
 	
 	@Override
-	public List<BoardDTO> boardList(int start, int end) {
-		return boardDao.boardList(start, end);
+	public List<BoardDTO> boardList(int start, int end, String search_option, String keyword) {
+		return boardDao.boardList(start, end, search_option, keyword);
 	}
 
 	@Override
-	public int boardCount() {
-		return boardDao.boardCount();
+	public int boardCount(String search_option, String keyword) {
+		return boardDao.boardCount(search_option, keyword);
 	}
 
 	@Override
@@ -62,5 +62,7 @@ public class BoardServiceImpl implements BoardService {
 	public void deleteBoard(int bno) {
 		boardDao.deleteBoard(bno);
 	}
+
+	
 
 }
