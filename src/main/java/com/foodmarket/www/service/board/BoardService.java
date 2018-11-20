@@ -12,4 +12,6 @@ public interface BoardService {
 	public void insertBoard(BoardDTO dto);
 	public BoardDTO detailBoard(int bno);
 	public void increaseViewcnt(int bno, HttpSession session) throws Exception; // 조회수 증가
+	public void updateBoard(BoardDTO dto);
+	public void deleteBoard(int bno);
 }

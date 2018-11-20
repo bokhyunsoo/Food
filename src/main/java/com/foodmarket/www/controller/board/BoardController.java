@@ -59,4 +59,16 @@ public class BoardController {
 		mav.setViewName("board/view");
 		return mav;
 	}
+	
+	@RequestMapping("update.do")
+	public String updateBoard(BoardDTO dto) {
+		boardService.updateBoard(dto);
+		return "redirect:/board/list.do";
+	}
+	
+	@RequestMapping("delete.do")
+	public String deleteBoard(@RequestParam int bno) {
+		boardService.deleteBoard(bno);
+		return "redirect:/board/list.do";
+	}
 }

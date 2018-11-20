@@ -8,6 +8,23 @@
 <%@ include file="../include/header.jsp" %>
 <script src="${path}/include/js/common.js"></script>
 <script src="${path}/ckeditor/ckeditor.js"></script>
+<script>
+$(function(){
+	$("#btnUpdate").click(function(){
+		if(confirm("게시글을 정말 수정하시겠습니까?")){
+		document.form1.action="${path}/board/update.do";
+		document.form1.submit();
+		}
+	});
+	
+	$("#btnDelete").click(function(){
+		if(confirm("게시글을 정말 삭제하시겠습니까?")){
+		document.form1.action="${path}/board/delete.do";
+		document.form1.submit();
+		}
+	});
+});
+</script>
 <style>
 .my-hr1 {
     border: 0;

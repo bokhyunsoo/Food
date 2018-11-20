@@ -10,4 +10,6 @@ public interface BoardDAO {
 	public void insertBoard(BoardDTO dto);
 	public BoardDTO detailBoard(int bno);
 	public void increaseViewcnt(int bno); // 조회수 증가
+	public void updateBoard(BoardDTO dto);
+	public void deleteBoard(int bno);
 }
